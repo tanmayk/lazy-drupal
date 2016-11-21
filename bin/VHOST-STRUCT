@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+  DocumentRoot "SITEDIRECTORY"
+  ServerName SITENAME
+  <Directory "SITEDIRECTORY">
+    Allow from all
+    Options +Includes +Indexes +FollowSymLinks
+    AllowOverride all
+  </Directory>
+</VirtualHost>

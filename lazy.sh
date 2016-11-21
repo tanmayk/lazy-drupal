@@ -9,4 +9,25 @@ if [[ $UID != 0 ]]; then
   exit 1
 fi
 
-echo "Awesome... You did it!"
+SiteValidation="^[a-z0-9!#\$%&'*+/=?^_\`{|}~-]+(\.[a-z0-9!#$%&'*+/=?^_\`{|}~-]+)*?\$"
+
+echo --------------------------------------------------------------------------
+echo "Site Information"
+echo --------------------------------------------------------------------------
+
+while true
+do
+  echo
+  read -p "Site name : " SiteName
+  if [[ $SiteName =~ $SiteValidation ]] ; then
+	export SiteName
+        break
+  else
+    echo "Invalid site name. It should not contain space, special characters."
+  fi
+done
+
+# Set up apache configurations.
+echo
+echo "Configuring Apache..."
+sudo -E bash bin/apache.sh
